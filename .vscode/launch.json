@@ -11,10 +11,10 @@
             "name": "Launch Program",
             "program": "${workspaceFolder}\\bin\\www",
             "skipFiles": [
-                "${workspaceFolder}/node_modules/**/*.js",
-                "<node_internals>/**/*.js"
+                "${workspaceFolder}\\node_modules\\**\\.js",
+                "<node_internals>\\*\\*.js"
               ]
-        },
+        }
 
     ]
 }

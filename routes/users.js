@@ -4,8 +4,8 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  let query=res.query;
-  res.send('respond with a resource ');
+  var items = [{ title: "foo", id: 1 }, { title: "bar", id: 2},{ title: "google", id: 3}];
+  res.render("user/index.html",{items });
 });
 
 module.exports = router;
