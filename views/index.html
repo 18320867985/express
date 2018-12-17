@@ -13,15 +13,100 @@
   <h1>index</h1>
   <ul>
   {% for item in items %}
-    <li>{{ item.title }}</li>
+    <li class="li-del"  data-id="{{item._id}}" :class="{}">{{ item.name }}</li>
     {% else %}
     <li>This would display if the 'item' collection were empty</li>
     {% endfor %}
+
   </ul>
+  <div class="container" style='padding: 20px;'>
+    <p class="form-group">
+        <label for="">name:</label>
+        <input class="form-control name" type="text" name="name" >
+        
+    </p>
+    <p>
+        <label for="">password:</label>
+        <input class="form-control popper-dropdown pwd"  type="password" name="pwd" >
+    </p>
+    <p>
+        <button type="submit" class="btn btn-primary get">get</button>
+        <button type="submit" class="btn btn-primary post">post</button>
+        <button type="submit" class="btn btn-primary put">put</button>
+        <button type="submit" class="btn btn-primary delete">delete</button>
+    </p>
+</div>
 
- <button class="btn btn-primary">get</button>
+<script src="/static/js/jquery-1.11.0.min.js"></script>
+<script>
+    $(function () {
+        $(".get").click(function(){
+                    $.get("/data",{
+                        name:$(".name").val(),
+                        pwd:$(".pwd").val()
+                },function(data){
+                        console.log(data.data)
+                    })
 
+            });
+            $(".post").click(function(){
+                $.ajax({
+                        url:"/data",
+                        type:"post",
+                        data:{  name:$(".name").val(),
+                        pwd:$(".pwd").val()
+                         },
+                         success:function(data){
+                                console.log(data);
+                                window.location.reload();
+                         },
+                         error:function(){
 
+                         }
+                    })
+
+            });
+            $(".put").click(function(){
+                $.ajax({
+                        url:"/data",
+                        type:"put",
+                        data:{  name:$(".name").val(),
+                        pwd:$(".pwd").val()
+                         },
+                         success:function(data){
+                                console.log(data)
+                         },
+                         error:function(){
+
+                         }
+                    })
+
+            });
+            $(".li-del").click(function(){
+                var id=$(this).attr("data-id");
+               if( confirm("是否要删除数据？")){
+                $.ajax({
+                        url:"/data",
+                        type:"delete",
+                        data:{  name:$(".name").val(),
+                        pwd:$(".pwd").val(),
+                        id:id
+                         },
+                         success:function(data){
+                                console.log(data);
+                                window.location.reload();
+
+                         },
+                         error:function(){
+
+                         }
+                    })
+               }
+                   
+
+            });
+    })
+</script>
 
 </body>
 
