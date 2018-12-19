@@ -12,17 +12,16 @@ var adminRouter=require("./routes/admin");
 
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-
 // nunjucks
+app.set('view engine', 'nunjucks');
 nunjucks.configure('views', {
   autoescape: true,
   express: app
 });
 
-// jade
-//app.set('view engine', 'jade');
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+
 
 app.use(logger('dev'));
 app.use(express.json());
