@@ -5,8 +5,9 @@ var dbHelp=require("../lib/dbHelp");
 /* GET home page. */
 var items = [{ title: "foo", id: 1 }, { title: "bar", id: 2},{ title: "google", id: 3}];
 router.get('/', async function(req, res, next) {
+ var data=await dbHelp.find("news",{});
 
-  res.render('index.html', {items:items});
+  res.render('index.html', {items:data});
 });
 
 router.get("/data", async (req,res,next)=>{
