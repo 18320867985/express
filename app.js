@@ -6,10 +6,6 @@ var session = require('express-session');
 var logger = require('morgan');
 var nunjucks=require('nunjucks');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var adminRouter=require("./routes/admin");
-
 var app = express();
 
 // nunjucks
@@ -39,13 +35,18 @@ app.use(session({
 }));
 
 // route 
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var adminRouter=require("./routes/admin");
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  res.render("404.html");
+  //next(createError(404));
 });
 
 // error handler
