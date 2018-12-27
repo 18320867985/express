@@ -1,8 +1,9 @@
 
 const mongoose = require("mongoose");
+const config=require("./_config");
 
-const url="mongodb://localhost:27017/";
-const database="admin";
+const url=config.url;
+const database=config.database;
 
 var db=mongoose.createConnection(url+database);
 db.on("open",function(err,data){
