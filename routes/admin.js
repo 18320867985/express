@@ -46,28 +46,8 @@ router.get("/",async(req,res)=>{
     // console.log(data);
     // });
 
-    mainModel.Cat.mapReduce({
-        query: {
-            age:15
-        },
-        map: function () {
-            return emit(this.class, { age2:this.age, });
-        },
-        reduce: function (key, v) {
-            var sum = 0;
-            v.forEach(function (item) {
-                sum += item.age2;
-            });
-    
-            return { key: key, count: v.length, sum: sum, avg: sum / v.length };
-        }, 
-       
-    
-    }).then(function (data) {
-        console.log(data.results);
-    });
-    
-    return;
+   
+    // return;
      var  type= new mainModel.CatType({name:"type",_id: new mainModel.mongoose.Types.ObjectId(),num:24,dtl:{}});
         type.dtl={name:"hqs",desc:"desc"};
      var vd= type.validateSync();
